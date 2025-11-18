@@ -17,7 +17,7 @@ import glob, os
 
 #Note: assuming images to track have the following name convention: F14_5_roi4_segmentation_CROP_processed.tif 
 #      this is important for saving tracked image with the proper name
-folder = "ims_to_track/" #Gaby folder with all files to run here
+folder = "ims_to_track\\" #Gaby folder with all files to run here
 images = glob.glob(os.path.join(folder,'*.tif'))
 
 def sanitize_node_label(node):
@@ -412,7 +412,7 @@ for i in images:
     print("Solving Flow")
     convert_tracking_graph_to_lemon(G)
 
-    subprocess.run([
+    subpr #GABY EDIT HERE!! ocess.run([
         "g++",
         "-o", "flow",
         "cost_scaling.cc",
@@ -473,7 +473,7 @@ for i in images:
     seg_new = seg_new.transpose((0, 3, 2, 1))  # t, x, y, z
 
     # # 4. Save the resulting array as a TIFF file
-    tiff.imwrite(f"tracked_ims/{im_name}_syntracked.tif", np.asarray(np.expand_dims(seg_new, axis=2), dtype=np.float32),imagej=True) 
+    tiff.imwrite(f"tracked_ims\\{im_name}_syntracked.tif", np.asarray(np.expand_dims(seg_new, axis=2), dtype=np.float32),imagej=True) 
 
     # Convert 't' to datetime if it's not already
     tracks['t'] = pd.to_datetime(tracks['t'])
