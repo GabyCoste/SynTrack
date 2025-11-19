@@ -8,7 +8,7 @@ from scipy.stats import geom, multivariate_normal
 import numpy as np
 from matplotlib.colors import ListedColormap
 from tqdm import tqdm
-from tqdm.notebook import tqdm
+#from tqdm.notebook import tqdm
 from scipy.linalg import sqrtm
 from scipy.spatial import cKDTree, KDTree
 import pandas as pd
@@ -365,7 +365,7 @@ y_size = int(z_size*scale_factor)
 for i in images:
     ground_seg_img = tiff.imread(i)
     ground_seg_img = ground_seg_img.transpose((0, 3, 2, 1)) # t, x, y, z
-    im_name = i.split('/')[-1].split('_')[:3]
+    im_name = i.split('\\')[-1].split('_')[:2]
     im_name = '_'.join(im_name)    
     #ground_seg_img = ground_seg_img[:,0:x_size,0:y_size,0:z_size]
     print("Starting tracking on " + im_name)
@@ -411,19 +411,33 @@ for i in images:
 
     print("Solving Flow")
     convert_tracking_graph_to_lemon(G)
+    #subprocess.run(["g++", "-o", "flow", "cost_scaling.cc", "-lemon"], cwd="solver", check=True) #Gaby commented out and replaced bc it wasn't finding my lemon folder
 
-    subpr #GABY EDIT HERE!! ocess.run([
-        "g++",
-        "-o", "flow",
+    #    subprocess.run([
+    #        "g++",
+    #        "-o", "flow",
+    #        "cost_scaling.cc",
+    #        "-I", "C:\\Users\\Huganir Lab\\Documents\\GitHub\\SynTrack\\lemon-1.3.1\\include",
+    #        "-L", "C:\\Users\\Huganir Lab\\Documents\\GitHub\\SynTrack\\lemon-1.3.1\\lib",
+    #        "-lemon"
+    #    ], cwd="solver", check=True) #Gaby doesn't understand what this does, it has no specific info from this, do we need to run everytime?
+
+    subprocess.run([
+        "cl",
+        "/EHsc",
+        "/MD",
         "cost_scaling.cc",
-        "-I", "/cis/home/gcoste1/.local/include",
-        "-L", "/cis/home/gcoste1/.local/lib",
-        "-lemon"
-    ], cwd="solver", check=True) #Gaby doesn't understand what this does, it has no specific info from this, do we need to run everytime?
+        "/I", r"C:\Users\Huganir Lab\Documents\GitHub\SynTrack\lemon-1.3.1\include",
+        "/link",
+        "/LIBPATH:C:\\Users\\Huganir Lab\\Documents\\GitHub\\SynTrack\\lemon-1.3.1\\lib",
+        "lemon.lib"
+    ], cwd="solver", check=True) #Gaby Added this using chatGPT
 
     # Run the compiled program with k as argument and redirect output to output.txt
     with open("solver/output.txt", "w") as f:
-        subprocess.run(["./flow", str(k)], cwd="solver", stdout=f, check=True)
+        subprocess.run(["solver/cost_scaling.exe", str(k)], cwd="solver", stdout=f, check=True)
+
+
 
     print("Reading Flow")
 
