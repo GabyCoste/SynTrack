@@ -365,7 +365,7 @@ y_size = int(z_size*scale_factor)
 for i in images:
     ground_seg_img = tiff.imread(i)
     ground_seg_img = ground_seg_img.transpose((0, 3, 2, 1)) # t, x, y, z
-    im_name = i.split('\\')[-1].split('_')[:2]
+    im_name = i.split('\\')[-1].split('_')[:3]
     im_name = '_'.join(im_name)    
     #ground_seg_img = ground_seg_img[:,0:x_size,0:y_size,0:z_size]
     print("Starting tracking on " + im_name)
