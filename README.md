@@ -1,3 +1,5 @@
+Main branch here is for linux!
+
 To install:
 1. Set up lemon in the SynTrack folder with https://lemon.cs.elte.hu/pub/sources/lemon-1.3.1.tar.gz
 2. Create a tracked_ims folder and a ims_to_track folder
