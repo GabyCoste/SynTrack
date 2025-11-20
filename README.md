@@ -29,8 +29,7 @@ make install
 ```
 7. Start your python env and run the file: SynTrack_batch_GC.py
 ```
-python 
-SynTrack_batch_GC.py
+python SynTrack_batch_GC.py
 ```
 Install necessary packages as needed. Add images to track in ims_to_track folder. They should be 4D tif files with the following name convention:
 
