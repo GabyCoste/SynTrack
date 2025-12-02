@@ -33,7 +33,13 @@ Yes I realize some of these steps might be redundant but that is what I ran and 
 
 "/LIBPATH:Your_Path_to_Folder\\SynTrack\\lemon-1.3.1\\lib",
 ```
-7. Start your python env and run the file: SynTrack_batch_GC.py
+7. Activate your python venv
+8. Point the current terminal to our C++ compiler, in my case it is:
+```
+"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
+```
+You will have to run the above command every time you start a new terminal.
+9. Start tracking by running the file: SynTrack_batch_GC.py
 ```
 python SynTrack_batch_GC.py
 ```
