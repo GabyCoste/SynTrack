@@ -27,6 +27,7 @@ cmake .. -DCMAKE_INSTALL_PREFIX="Your_Path_to_Folder\SynTrack\lemon-1.3.1"
 cmake --install . --config Release
 ```
 Yes I realize some of these steps might be redundant but that is what I ran and it worked so just want to make sure.
+
 6. In SynTrack_batch_GC.py, edit the path to lemon in lines 430 and 432, here they would respectively be
 ```
 "/I", r"Your_Path_to_Folder\SynTrack\lemon-1.3.1\include",
@@ -39,6 +40,7 @@ Yes I realize some of these steps might be redundant but that is what I ran and 
 "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
 ```
 You will have to run the above command every time you start a new terminal.
+
 9. Start tracking by running the file: SynTrack_batch_GC.py
 ```
 python SynTrack_batch_GC.py
